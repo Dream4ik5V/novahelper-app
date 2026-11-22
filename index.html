@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NOVA RP Wiki — установка без SmartScreen</title>
+<style>
+  :root { --bg:#080a12; --panel:#121628; --line:rgba(255,255,255,.09); --text:#eef1f8; --muted:#8e98b0; --accent:#ff4a3d; --accent2:#ff8a5c; }
+  * { box-sizing: border-box; }
+  body { margin:0; background: radial-gradient(900px 500px at 8% -10%, rgba(255,74,61,.18), transparent 60%), radial-gradient(800px 480px at 105% 0%, rgba(124,140,255,.16), transparent 62%), var(--bg); color: var(--text); font-family:"Segoe UI","Inter",system-ui,sans-serif; min-height:100vh; }
+  .wrap { max-width: 860px; margin: 0 auto; padding: 56px 22px 80px; }
+  .brand { display:flex; align-items:center; gap:14px; margin-bottom: 34px; }
+  .logo { width:52px; height:52px; border-radius:15px; display:grid; place-items:center; font-weight:900; font-size:24px; color:#fff; background:linear-gradient(140deg,#ff4a3d,#ff8a5c); box-shadow:0 12px 30px rgba(255,74,61,.4); }
+  .brand h1 { margin:0; font-size:26px; letter-spacing:-.02em; }
+  .brand p { margin:3px 0 0; color:var(--muted); font-size:12.5px; letter-spacing:.14em; text-transform:uppercase; }
+  .card { background:linear-gradient(165deg, rgba(24,30,45,.94), rgba(13,17,26,.94)); border:1px solid var(--line); border-radius:20px; padding:26px; margin-bottom:16px; }
+  h2 { margin:0 0 8px; font-size:20px; }
+  p { color:var(--muted); line-height:1.65; margin:0 0 14px; font-size:14.5px; }
+  .row { display:flex; flex-wrap:wrap; gap:12px; margin-top:16px; }
+  a.btn, button.btn { display:inline-flex; align-items:center; gap:9px; border-radius:13px; padding:13px 20px; font-size:14.5px; font-weight:700; text-decoration:none; cursor:pointer; border:1px solid transparent; transition:.15s ease; }
+  .primary { background:linear-gradient(135deg,#ff4a3d,#ff8a5c); color:#fff; box-shadow:0 12px 28px rgba(255,74,61,.32); }
+  .primary:hover { transform:translateY(-1px); box-shadow:0 16px 34px rgba(255,74,61,.42); }
+  .ghost { background:rgba(255,255,255,.04); border-color:rgba(255,255,255,.12); color:var(--text); }
+  .ghost:hover { background:rgba(255,255,255,.08); }
+  .hint { font-size:12.5px; color:var(--muted); margin-top:10px; }
+  .cmd { margin-top:14px; background:#0a0d15; border:1px solid var(--line); border-radius:12px; padding:12px 14px; font-family:Consolas,monospace; font-size:12.5px; color:#a9e0b4; overflow-x:auto; white-space:nowrap; }
+  .steps { counter-reset:s; list-style:none; padding:0; margin:10px 0 0; }
+  .steps li { counter-increment:s; position:relative; padding:0 0 12px 40px; color:var(--muted); font-size:14.5px; line-height:1.55; }
+  .steps li::before { content:counter(s); position:absolute; left:0; top:-2px; width:26px; height:26px; border-radius:9px; display:grid; place-items:center; font-size:12.5px; font-weight:800; color:#fff; background:linear-gradient(140deg,#ff4a3d,#ff8a5c); }
+  .steps b { color:var(--text); }
+  .foot { margin-top:28px; color:#5f6a83; font-size:12px; text-align:center; }
+  code { color:#ffb9a8; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="brand">
+    <div class="logo">N</div>
+    <div><h1>NOVA RP Wiki</h1><p>База знаний администратора · GTA 5</p></div>
+  </div>
+
+  <div class="card">
+    <h2>Установка без SmartScreen</h2>
+    <p>Скачайте маленький загрузчик — он сам возьмёт установщик с GitHub и запустит его. Браузер не помечает установщик, поэтому Windows не показывает SmartScreen.</p>
+    <div class="row">
+      <a class="btn primary" href="install.bat" download="NOVA-RP-Установить.bat">⬇ Скачать загрузчик и установить</a>
+      <a class="btn ghost" href="https://github.com/Dream4ik5V/novahelper-app/releases/latest/download/NOVA-RP-Wiki-Setup.exe">Прямой установщик (может быть SmartScreen)</a>
+    </div>
+    <div class="hint">Загрузчик скачивается один раз. Если Windows спросит «Открыть файл?» — нажмите «Запустить».</div>
+  </div>
+
+  <div class="card">
+    <h2>Способ в одну команду</h2>
+    <p>Вставьте команду в PowerShell — она скачает и запустит установщик без метки браузера.</p>
+    <div class="cmd">$u='https://github.com/Dream4ik5V/novahelper-app/releases/latest/download/NOVA-RP-Wiki-Setup.exe'; $f="$env:TEMP\NOVA-RP-Wiki-Setup.exe"; Invoke-WebRequest $u -OutFile $f; Start-Process $f</div>
+    <div class="row">
+      <button class="btn ghost" id="copyCmd">Скопировать команду</button>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Как установить</h2>
+    <ol class="steps">
+      <li>Нажмите <b>«Скачать загрузчик»</b> выше.</li>
+      <li>Откройте скачанный <b>NOVA-RP-Установить.bat</b> (если появится окно «Открыть файл?» — «Запустить»).</li>
+      <li>Дождитесь загрузки установщика (133 МБ) — он запустится сам.</li>
+      <li>Выберите папку установки и нажмите <b>«Установить»</b>. По желанию оставьте галочки ярлыков.</li>
+      <li>Готово: приложение запустится, а дальше обновления приходят сами.</li>
+    </ol>
+  </div>
+
+  <div class="foot">NOVA RP Wiki · <a class="ghost" style="padding:0;border:0;background:none;color:#8e98b0" href="https://github.com/Dream4ik5V/novahelper-app/releases/latest">все версии на GitHub</a></div>
+</div>
+<script>
+  document.getElementById('copyCmd').addEventListener('click', async () => {
+    const cmd = document.querySelector('.cmd').textContent.trim();
+    try { await navigator.clipboard.writeText(cmd); document.getElementById('copyCmd').textContent = 'Скопировано ✓'; setTimeout(() => document.getElementById('copyCmd').textContent = 'Скопировать команду', 1800); } catch { alert(cmd); }
+  });
+</script>
+</body>
+</html>
